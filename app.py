@@ -29,6 +29,7 @@ with st.form("submission_form", clear_on_submit=True):
     email = st.text_input("📧 Email")
     product_name = st.text_input("🎫 Product / Event Name")
     quantity = st.number_input("🔢 Quantity", min_value=1, step=1)
+    note = st.text_area("📝 Optional Note")
     submitted = st.form_submit_button("Save to Database")
 
 # -----------------------------
