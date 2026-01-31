@@ -84,6 +84,7 @@ def clean_text(text: str) -> str:
 # -----------------------------
 if submitted:
     errors = []
+    error_box = st.empty()
 
     # Clean inputs
     customer_name = clean_text(customer_name).title()
@@ -107,7 +108,7 @@ if submitted:
     # Show errors OR save
     if errors:
         for err in errors:
-            st.error(err)
+            error_box.error(err)
     else:
         insert(customer_name, email, product_name, quantity, note)
         st.success("✅ Order saved successfully!")
