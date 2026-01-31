@@ -17,12 +17,6 @@ if "db_initialized" not in st.session_state:
 # -----------------------------
 st.title("🛒 Order anything")
 st.caption("Submit the form. Data is saved to Postgres and shown below.")
-st.set_page_config(
-    page_title="🛒 Order anything",
-    page_icon="🛒",
-    layout="centered"
-)
-
 
 with st.form("submission_form", clear_on_submit=True):
     customer_name = st.text_input("👤 Customer Name")
