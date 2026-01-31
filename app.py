@@ -15,16 +15,52 @@ if "db_initialized" not in st.session_state:
 # -----------------------------
 # Streamlit UI
 # -----------------------------
-st.title("🛒 Order anything")
-st.caption("Submit the form. Data is saved to Postgres and shown below.")
+# st.title("🛒 Order anything")
+# st.caption("Submit the form. Data is saved to Postgres and shown below.")
 
-with st.form("submission_form", clear_on_submit=True):
-    customer_name = st.text_input("👤 Customer Name")
-    email = st.text_input("📧 Email")
-    product_name = st.text_input("🎫 Product / Event Name")
-    quantity = st.number_input("🔢 Quantity", min_value=1, step=1)
-    note = st.text_area("📝 Optional Note")
-    submitted = st.form_submit_button("Save to Database")
+# with st.form("submission_form", clear_on_submit=True):
+#     customer_name = st.text_input("👤 Customer Name")
+#     email = st.text_input("📧 Email")
+#     product_name = st.text_input("🎫 Product / Event Name")
+#     quantity = st.number_input("🔢 Quantity", min_value=1, step=1)
+#     note = st.text_area("📝 Optional Note")
+#     submitted = st.form_submit_button("Save to Database")
+
+left_col, right_col = st.columns([1.2, 1])
+
+# =============================
+# RIGHT SIDE — Order Form
+# =============================
+with right_col:
+    st.title("🛒 Order anything")
+    st.caption("Submit the form. Data is saved to Postgres.")
+
+    with st.form("submission_form", clear_on_submit=True):
+        customer_name = st.text_input("👤 Customer Name")
+        email = st.text_input("📧 Email")
+        product_name = st.text_input("🎫 Product / Event Name")
+        quantity = st.number_input("🔢 Quantity", min_value=1, step=1)
+        note = st.text_area("📝 Optional Note")
+        submitted = st.form_submit_button("Save to Database")
+
+
+# =============================
+# LEFT SIDE — Data Preview
+# =============================
+with left_col:
+    st.title("📊 Order Entry Form")
+    st.caption("Latest submissions (newest first)")
+
+    try:
+        rows = fetch_latest(50)
+        if rows:
+            df = pd.DataFrame(rows)
+            st.dataframe(df, use_container_width=True)
+        else:
+            st.info("No records yet.")
+    except Exception as e:
+        st.error("Could not fetch rows from the database.")
+        st.code(str(e))
 
 # -----------------------------
 # Validation helpers
