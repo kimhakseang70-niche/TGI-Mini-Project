@@ -112,8 +112,8 @@ if submitted:
             st.success("✅ Order saved successfully!")
 
 
-st.divider()
-st.subheader("📄 Latest Submissions")
+# st.divider()
+# st.subheader("📄 Latest Submissions")
 
 # -----------------------------
 # Data Preview (Quality Check)
