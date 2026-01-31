@@ -105,8 +105,8 @@ if submitted:
         errors.append("Quantity must be greater than 0")
 
     with message_box:
-        if errors:
-            st.error(" ❌ ".join(errors))
+        for err in errors:
+            st.error(err)
         else:
             insert(customer_name, email, product_name, quantity, note)
             st.success("✅ Order saved successfully!")
