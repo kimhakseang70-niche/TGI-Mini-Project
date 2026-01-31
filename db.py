@@ -5,7 +5,7 @@ import psycopg2.extras
 DB_URL = os.environ.get("NEON_DATABASE_URL")
 
 CREATE_TABLE_SQL = """
-CREATE TABLE customer_order (
+CREATE TABLE IF NOT EXISTS customer_order (
     order_id SERIAL PRIMARY KEY,
     customer_name TEXT NOT NULL,
     email TEXT NOT NULL,
@@ -19,6 +19,7 @@ CREATE TABLE customer_order (
 INSERT_SQL = """
 INSERT INTO customer_order (customer_name, email, product_name, quantity, note)
        VALUES (%s, %s, %s, %s, %s)
+       RETURNING order_id
 """
 
 SELECT_LATEST_SQL = """
