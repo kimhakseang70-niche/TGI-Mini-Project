@@ -58,8 +58,7 @@ with right_col:
     st.title("📊 Order Entry Form")
     st.caption("Latest submissions (newest first)")
 
-    error_box = st.empty()
-    success_box = st.empty()
+    message_box = st.empty()
     
     try:
         rows = fetch_latest(50)
@@ -87,35 +86,31 @@ def clean_text(text: str) -> str:
 # -----------------------------
 if submitted:
     errors = []
-    error_box = st.empty()
 
-    # Clean inputs
     customer_name = clean_text(customer_name).title()
     email = clean_text(email).lower()
     product_name = clean_text(product_name).title()
     note = clean_text(note)
 
-    # Validation rules
     if not customer_name:
-        errors.append("❌ Customer name cannot be empty")
+        errors.append("Customer name cannot be empty")
 
     if not is_valid_email(email):
-        errors.append("❌ Email is not valid")
+        errors.append("Email is not valid")
 
     if not product_name:
-        errors.append("❌ Product name cannot be empty")
+        errors.append("Product name cannot be empty")
 
-    if not isinstance(quantity, int) or quantity <= 0:
-        errors.append("❌ Quantity must be an integer greater than 0")
+    if quantity <= 0:
+        errors.append("Quantity must be greater than 0")
 
-    # Show errors OR save
-    if errors:
-        error_box.error("❌ " + " | ".join(errors))
-        success_box.empty()
-    else:
-        insert(customer_name, email, product_name, quantity, note)
-        error_box.empty()
-        success_box.success("✅ Order saved successfully!")
+    with message_box:
+        if errors:
+            st.error(" ❌ ".join(errors))
+        else:
+            insert(customer_name, email, product_name, quantity, note)
+            st.success("✅ Order saved successfully!")
+
 
 st.divider()
 st.subheader("📄 Latest Submissions")
