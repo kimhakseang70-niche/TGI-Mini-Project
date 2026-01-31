@@ -13,7 +13,7 @@ CREATE TABLE orders (
     quantity INTEGER NOT NULL CHECK (quantity > 0),
     note TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+)
 """
 
 INSERT_SQL = """
