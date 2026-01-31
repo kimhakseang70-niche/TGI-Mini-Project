@@ -92,25 +92,21 @@ if submitted:
     product_name = clean_text(product_name).title()
     note = clean_text(note)
 
-    if not customer_name:
-        st.error("Customer name cannot be empty")
+    # if not customer_name:
+    #     st.error("Customer name cannot be empty")
 
-    if not is_valid_email(email):
-        st.error("Email is not valid")
+    # if not is_valid_email(email):
+    #     st.error("Email is not valid")
 
-    if not product_name:
-        st.error("Product name cannot be empty")
+    # if not product_name:
+    #     st.error("Product name cannot be empty")
 
-    if quantity <= 0:
-        st.error("Quantity must be greater than 0")
+    # if quantity <= 0:
+    #     st.error("Quantity must be greater than 0")
 
-    if errors:
-        for err in errors:
-            st.error(err)
-    else:
-        insert(customer_name, email, product_name, quantity, note)
-        st.success("✅ Order saved successfully!")
-st.divider()
+    # else:
+    #     insert(customer_name, email, product_name, quantity, note)
+    #     st.success("✅ Order saved successfully!")
 
 # st.divider()
 # st.subheader("📄 Latest Submissions")
