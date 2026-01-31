@@ -26,12 +26,13 @@ if "db_initialized" not in st.session_state:
 #     note = st.text_area("📝 Optional Note")
 #     submitted = st.form_submit_button("Save to Database")
 
-left_col, right_col = st.columns([1.2, 1])
+left_col, right_col = st.columns([1, 2.5], gap="large")
+
 
 # =============================
 # RIGHT SIDE — Order Form
 # =============================
-with right_col:
+with left_col:
     st.title("🛒 Order anything")
     st.caption("Submit the form. Data is saved to Postgres.")
 
@@ -47,7 +48,7 @@ with right_col:
 # =============================
 # LEFT SIDE — Data Preview
 # =============================
-with left_col:
+with right_col:
     st.title("📊 Order Entry Form")
     st.caption("Latest submissions (newest first)")
 
@@ -111,15 +112,15 @@ st.subheader("📄 Latest Submissions")
 # -----------------------------
 # Data Preview (Quality Check)
 # -----------------------------
-st.title("📊 Order Entry Form")
-try:
-    rows = fetch_latest(50)
-    if rows:
-        df = pd.DataFrame(rows)
-        st.dataframe(df, use_container_width=True)
-    else:
-        st.info("No records yet. Submit the form above.")
-except Exception as e:
-    st.error("Could not fetch rows from the database.")
-    st.code(str(e))
+# st.title("📊 Order Entry Form")
+# try:
+#     rows = fetch_latest(50)
+#     if rows:
+#         df = pd.DataFrame(rows)
+#         st.dataframe(df, use_container_width=True)
+#     else:
+#         st.info("No records yet. Submit the form above.")
+# except Exception as e:
+#     st.error("Could not fetch rows from the database.")
+#     st.code(str(e))
 
