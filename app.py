@@ -15,6 +15,12 @@ if "db_initialized" not in st.session_state:
 # -----------------------------
 # Streamlit UI
 # -----------------------------
+st.set_page_config(
+    page_title="Niche Shop",
+    page_icon="🛍️",
+    layout="wide"   # 👈 FULL SCREEN
+)
+
 # st.title("🛒 Order anything")
 # st.caption("Submit the form. Data is saved to Postgres and shown below.")
 
