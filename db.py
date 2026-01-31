@@ -24,9 +24,7 @@ INSERT INTO orders (customer_name, email, product_name, quantity, note)
 SELECT_LATEST_SQL = """
 SELECT order_id, customer_name, email, product_name, quantity, note, created_at
   FROM orders
- ORDER BY created_at DESC
- LIMIT 20
- ORDER BY id DESC
+ ORDER BY order_id, created_at DESC
  LIMIT %s
 """
 
