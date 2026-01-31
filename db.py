@@ -45,7 +45,8 @@ def get_conn():
 def init_db():
     with get_conn() as conn:
         with conn.cursor() as cur:
-            cur.execute(CREATE_TABLE_SQL)
+            print("Created")
+            # cur.execute(CREATE_TABLE_SQL)
 
 def insert(customer_name: str, email: str, product_name: str, quantity:int, note: str) -> int:
     with get_conn() as conn:
