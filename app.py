@@ -58,6 +58,9 @@ with right_col:
     st.title("📊 Order Entry Form")
     st.caption("Latest submissions (newest first)")
 
+    error_box = st.empty()
+    success_box = st.empty()
+    
     try:
         rows = fetch_latest(50)
         if rows:
@@ -107,11 +110,12 @@ if submitted:
 
     # Show errors OR save
     if errors:
-        for err in errors:
-            error_box.error(err)
+        error_box.error("❌ " + " | ".join(errors))
+        success_box.empty()
     else:
         insert(customer_name, email, product_name, quantity, note)
-        st.success("✅ Order saved successfully!")
+        error_box.empty()
+        success_box.success("✅ Order saved successfully!")
 
 st.divider()
 st.subheader("📄 Latest Submissions")
