@@ -98,5 +98,6 @@ if submitted:
         error_box.error("\n".join(errors))
     else:
         insert(customer_name, email, product_name, quantity, note)
-        success_box.success("✅ Order saved successfully!")
+        # success_box.success("✅ Order saved successfully!")
+        st.session_state["just_saved"] = True
         st.rerun()   # 👈 FORCE REFRESH
