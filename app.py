@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 # ✅ MUST BE FIRST STREAMLIT CALL
 st.set_page_config(
@@ -41,6 +42,7 @@ with left_col:
 
     error_box = st.empty()   # 👈 placeholder (prevents jump)
     success_box = st.empty()
+    loading_box = st.empty()
 
     with st.form("submission_form", clear_on_submit=True):
         customer_name = st.text_input("👤 Customer Name")
@@ -75,6 +77,7 @@ with right_col:
 if submitted:
     error_box.empty()
     success_box.empty()
+    loading_box.empty()
 
     customer_name = clean_text(customer_name).title()
     email = clean_text(email).lower()
@@ -99,6 +102,15 @@ if submitted:
         error_box.error("\n".join(errors))
     else:
         insert(customer_name, email, product_name, quantity, note)
-        # success_box.success("✅ Order saved successfully!")
+        # 🔥 ANIME LOADING
+        with loading_box.container():
+            st.image(
+                "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+                width=200
+            )
+            st.caption("Saving your order... 🌸")
+
+        time.sleep(1.5)  # simulate anime loading 😄
+
         st.session_state["just_saved"] = True
         st.rerun()   # 👈 FORCE REFRESH
