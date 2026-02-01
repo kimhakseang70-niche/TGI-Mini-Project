@@ -65,7 +65,7 @@ left_col, right_col = st.columns([1, 2.5], gap="large")
 # =============================
 with left_col:
     st.title("🛒 Shopping")
-    st.caption("Order anything, but get nothing")
+    st.caption("Order anything, but get nothing 😄")
 
     error_box = st.empty()   # 👈 placeholder (prevents jump)
     success_box = st.empty()
