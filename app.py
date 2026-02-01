@@ -36,7 +36,7 @@ left_col, right_col = st.columns([1, 2.5], gap="large")
 # LEFT — Order Form
 # =============================
 with left_col:
-    st.title("🛒 Order anything")
+    st.title("🛒 Shopping")
     st.caption("Order anything, but get nothing")
 
     error_box = st.empty()   # 👈 placeholder (prevents jump)
