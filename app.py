@@ -37,7 +37,6 @@ left_col, right_col = st.columns([1, 2.5], gap="large")
 # =============================
 with left_col:
     st.title("🛒 Order anything")
-    st.caption("Submit the form. Data is saved to Postgres.")
 
     error_box = st.empty()   # 👈 placeholder (prevents jump)
     success_box = st.empty()
@@ -45,7 +44,7 @@ with left_col:
     with st.form("submission_form", clear_on_submit=True):
         customer_name = st.text_input("👤 Customer Name")
         email = st.text_input("📧 Email")
-        product_name = st.text_input("🎫 Product / Event Name")
+        product_name = st.text_input("🎫 Product Name")
         quantity = st.number_input("🔢 Quantity", min_value=1, step=1)
         note = st.text_area("📝 Optional Note")
         submitted = st.form_submit_button("Save to Database")
@@ -100,3 +99,4 @@ if submitted:
     else:
         insert(customer_name, email, product_name, quantity, note)
         success_box.success("✅ Order saved successfully!")
+        st.rerun()   # 👈 FORCE REFRESH
