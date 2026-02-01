@@ -55,7 +55,7 @@ with left_col:
 # =============================
 # TODO add new row without request
 with right_col:
-    st.title("📊 Latest submissions")
+    st.title("📊 Order List")
     st.caption("Newest first")
 
     try:
