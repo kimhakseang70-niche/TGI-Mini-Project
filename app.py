@@ -42,7 +42,7 @@ with left_col:
 
     error_box = st.empty()   # 👈 placeholder (prevents jump)
     success_box = st.empty()
-    loading_box = st.empty()
+    popup = st.empty()
 
     with st.form("submission_form", clear_on_submit=True):
         customer_name = st.text_input("👤 Customer Name")
@@ -77,7 +77,7 @@ with right_col:
 if submitted:
     error_box.empty()
     success_box.empty()
-    loading_box.empty()
+    popup.empty()
 
     customer_name = clean_text(customer_name).title()
     email = clean_text(email).lower()
@@ -103,14 +103,21 @@ if submitted:
     else:
         insert(customer_name, email, product_name, quantity, note)
         # 🔥 ANIME LOADING
-        with loading_box.container():
-            st.image(
-                "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
-                width=200
-            )
-            st.caption("Saving your order... 🌸")
+        # 🔥 SHOW POPUP LOADING
+        popup.markdown(
+            """
+            <div class="loading-overlay">
+                <div class="loading-box">
+                    <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" width="180">
+                    <p>Saving your order… 🌸</p>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-        time.sleep(1.5)  # simulate anime loading 😄
+        time.sleep(1.5)  # anime delay 😄
+        popup.empty()
 
         st.session_state["just_saved"] = True
         st.rerun()   # 👈 FORCE REFRESH
