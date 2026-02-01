@@ -29,8 +29,35 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 # -----------------------------
-# Layout
+# UI
 # -----------------------------
+st.markdown(
+    """
+    <style>
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .loading-box {
+        background: white;
+        padding: 24px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 left_col, right_col = st.columns([1, 2.5], gap="large")
 
 # =============================
