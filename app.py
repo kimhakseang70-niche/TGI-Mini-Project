@@ -136,7 +136,7 @@ if submitted:
             <div class="loading-overlay">
                 <div class="loading-box">
                     <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" width="180">
-                    <p>Saving your order… 🌸</p>
+                    <p>Saving your order… </p>
                 </div>
             </div>
             """,
